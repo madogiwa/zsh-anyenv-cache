@@ -8,7 +8,10 @@ export ANYENV_ROOT
 
 local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/anyenv"
 local envs=(anyenv "$ANYENV_ROOT"/envs/*(N-/:t))
-local exists=("$cache/autoload"/$envs(N-.:t))
+local exists=()
+for i in $envs; do
+  exists=($exists "$cache/autoload"/$i(N-.:t))
+done
 local env
 local -U upath
 
